@@ -7,13 +7,14 @@ var Algorithms = {};
  * @return {[type]}      [排序的数组]
  */
 Algorithms.insert_sort = function(arr) {
+       
         var nArr = arr,
             temp, j;
         for (var i = 1; i < nArr.length; i++) {
             temp = parseInt(nArr[i]);
             j = i - 1;
 
-            while (j >= 0 &&  parseInt(nArr[j]) > temp) {
+            while (j >= 0 && parseInt(nArr[j]) > temp) {
                 nArr[j + 1] = nArr[j];
                 j = j - 1;
             }
