@@ -7,29 +7,60 @@ var Algorithms = {};
  * @return {[type]}      [排序的数组]
  */
 Algorithms.insert_sort = function(arr) {
-       
-        var nArr = arr,
-            temp, j;
-        for (var i = 1; i < nArr.length; i++) {
-            temp = parseInt(nArr[i]);
-            j = i - 1;
 
-            while (j >= 0 && parseInt(nArr[j]) > temp) {
-                nArr[j + 1] = nArr[j];
-                j = j - 1;
+    var nArr = arr,
+        temp, j;
+    for (var i = 1; i < nArr.length; i++) {
+        temp = parseInt(nArr[i]);
+        j = i - 1;
+
+        while (j >= 0 && parseInt(nArr[j]) > temp) {
+            nArr[j + 1] = nArr[j];
+            j = j - 1;
+        }
+        nArr[j + 1] = temp;
+    };
+    return nArr;
+};
+/**
+ * [merge_sort 归并排序]
+ * @param  {[type]} arr [description]
+ * @param  {[type]} p   [description]
+ * @param  {[type]} r   [description]
+ * @return {[type]}     [description]
+ */
+ 
+//_recursion 数组过大时使用迭代版本
+Algorithms.merge_sort_recursion = function(A) {
+
+    function　 merge(left, right) {
+        var　 result = []; 
+        while (left.length > 0 && right.length > 0) {
+            if (parseInt(left[0]) < parseInt(right[0])) {
+                /*shift()方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。*/
+                result.push(left.shift());
+            } else {
+                result.push(right.shift());
             }
-            nArr[j + 1] = temp;
-        };
-        return nArr;
+
+        } 
+
+        return　 result.concat(left).concat(right);
     }
-    /**
-     * [merge_sort 归并排序]
-     * @param  {[type]} arr [description]
-     * @param  {[type]} p   [description]
-     * @param  {[type]} r   [description]
-     * @return {[type]}     [description]
-     */
-Algorithms.merge_sort = function(A) {
+
+    function　 mergeSort(items) {
+        if (items.length == 1) {
+            return　 items;
+        }
+        var　 middle = Math.floor(items.length / 2),
+            left = items.slice(0, middle),
+            right = items.slice(middle);
+        return　 merge(mergeSort(left), mergeSort(right));
+    }
+    return　 mergeSort(A);
+
+};
+Algorithms.merge_sort_expir = function(A) {
     var p = 0,
         q = A.length / 2 - 1,
         r = A.length;
@@ -125,7 +156,7 @@ Algorithms.pop_sort = function(A) {
 
     return A;
 
-}
+};
 
 
 $(function() {
