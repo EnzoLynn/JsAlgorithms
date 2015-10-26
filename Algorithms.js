@@ -6,26 +6,17 @@ var Algorithms = {};
  * @param  {[type]} desc [排序类型]
  * @return {[type]}      [排序的数组]
  */
-Algorithms.insert_sort = function(arr, desc) {
+Algorithms.insert_sort = function(arr) {
         var nArr = arr,
             temp, j;
         for (var i = 1; i < nArr.length; i++) {
             temp = parseInt(nArr[i]);
             j = i - 1;
-            if (desc) {
-                while (j >= 0 && nArr[j] < temp) {
-                    nArr[j + 1] = parseInt(nArr[j]);
-                    j = j - 1;
 
-                }
-            } else {
-                while (j >= 0 && nArr[j] > temp) {
-                    nArr[j + 1] = nArr[j]
-                    j = j - 1;
-
-                }
+            while (j >= 0 &&  parseInt(nArr[j]) > temp) {
+                nArr[j + 1] = nArr[j];
+                j = j - 1;
             }
-
             nArr[j + 1] = temp;
         };
         return nArr;
@@ -82,29 +73,51 @@ Algorithms.merge_sort = function(A) {
                 j = j + 1;
             }
         };
-        console.log(L.join());
-        console.log(R.join());
         return A;
     })(A, p, q, r);
 };
+/**
+ * [sel_sort 选择排序]
+ * @param  {[type]} A [description]
+ * @return {[type]}   [description]
+ */
 Algorithms.sel_sort = function(A) {
-    Array.prototype.max = function() { //max
-        return Math.max.apply(null, this);
-    }
-    return A.max();
+    // Array.prototype.max = function() { //max
+    //     return Math.max.apply(null, this);
+    // }
+    // return A.max();
+    // 
+    var postion, temp;
+    for (var i = 0; i < A.length; i++) {
+        postion = i;
+        for (var j = i + 1; j < A.length; j++) {
+            if (parseInt(A[j]) < parseInt(A[postion])) {
+                postion = j;
+            };
+        };
+        temp = A[i];
+        A[i] = A[postion];
+        A[postion] = temp;
+    };
+
+    return A;
 };
 
 
 
-
+/**
+ * [pop_sort 冒泡排序]
+ * @param  {[type]} A [description]
+ * @return {[type]}   [description]
+ */
 Algorithms.pop_sort = function(A) {
     var temp;
     for (var i = 0; i < A.length; i++) {
-        var temp = A[i];
-        for (var j = i + 1; j < A.length; j++) {
-            if (A[i] > A[j]) {
-                A[i] = A[j]
-                A[j] = temp;
+        for (var j = 0; j < A.length - i; j++) {
+            if (parseInt(A[j]) < parseInt(A[j - 1])) {
+                temp = A[j];
+                A[j] = A[j - 1];
+                A[j - 1] = temp;
             }
         };
     };
