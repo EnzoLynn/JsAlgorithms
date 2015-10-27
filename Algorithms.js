@@ -221,7 +221,7 @@ Algorithms.pop_sort = function(A) {
 $(function() {
     var randoms = [];
     for (var i = 1; i < 2001; i++) {
-        randoms.push(i);
+        randoms.push(Math.floor(Math.random()*10*i));
     };
     //从一个给定的数组arr中,随机返回num个不重复项
     function getArrayItems(arr, num) {
