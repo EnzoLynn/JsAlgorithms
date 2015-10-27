@@ -19,21 +19,24 @@
 <body>
 	<span>稳定--假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变</span>
 	<fieldset class="insert_sort">
-		<legend>insert_sort(O(n^2)  O(1) 稳定)固定元素找位置</legend>
+		<legend>insert_sort(O(n^2)  O(1) 稳定)</legend>
+		<div>固定元素找位置</div>
 		<input type="text" class="input" value="">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
 		<div class="result"></div>
 	</fieldset>   
 	<fieldset class="pop_sort">
-		<legend>pop_sort(O(n^2)  O(1) 稳定)两两互换位置</legend>
+		<legend>pop_sort(O(n^2)  O(1) 稳定)</legend>
+		<div>两两互换位置</div>
 		<input type="text" class="input" value="">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
 		<div class="result"></div>
 	</fieldset>  
 	<fieldset class="sel_sort">
-		<legend>sel_sort(O(n^2)  O(1) 不稳定)固定位置找元素</legend>
+		<legend>sel_sort(O(n^2)  O(1) 不稳定)</legend>
+		<div>固定位置找元素</div>
 		<input type="text" class="input" value="">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
@@ -42,6 +45,7 @@
 	 
 	<fieldset class="merge_sort_recursion">
 		<legend>merge_sort_recursion(O(nlog2_n)  O(nlog2_n) 稳定)</legend>
+		<div>已排序的两组数组合并</div>
 		<input type="text" class="input" value="">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
@@ -49,6 +53,7 @@
 	</fieldset>  
 	<fieldset class="merge_sort_iteration">
 		<legend>merge_sort_iteration(O(nlog2_n)  O(nlog2_n) 稳定)</legend>
+		<div>已排序的两组数组合并</div>
 		<input type="text" class="input" value="">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
@@ -57,6 +62,7 @@
 
 	<fieldset class="quick_sort">
 		<legend>quick_sort(O(n^2)  O(1) 不稳定)</legend>
+		<div>选取一个数据（通常选用数组的第一个数）作为关键数据，然后将所有比它小的数都放到它前面，所有比它大的数都放到它后面</div>
 		<input type="text" class="input" value="">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
