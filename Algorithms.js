@@ -23,7 +23,7 @@ Algorithms.insert_sort = function(arr) {
     return nArr;
 };
 /**
- * [merge_sort 归并排序]
+ * [merge_sort_iteration 归并排序——迭代]
  * @param  {[type]} arr [description]
  * @param  {[type]} p   [description]
  * @param  {[type]} r   [description]
@@ -49,18 +49,17 @@ Algorithms.merge_sort_iteration = function(A) {
             rel.push([R, L]);
         }
     }
-    console.log(rel);
     var count = rel.length;
-    var result = [],output=[];
+    var result = [],
+        output = [];
     while (count > 1) {
         result = [];
         while (rel.length > 0) {
             rer = [];
             var L = rel.shift();
             var R = rel.shift();
-            if (typeof R == 'undefined') {   
-                result.push(L); 
-                console.log(result);
+            if (typeof R == 'undefined') {
+                result.push(L);
                 continue;
             };
             while (L.length > 0 && R.length > 0) {
@@ -75,15 +74,21 @@ Algorithms.merge_sort_iteration = function(A) {
             result.push(rer);
         }
         count = result.length;
-        rel = result; 
+        rel = result;
     }
 
     return result;
-    
+
 
 }
 
-
+/**
+ * [merge_sort_recursion 归并排序——递归]
+ * @param  {[type]} arr [description]
+ * @param  {[type]} p   [description]
+ * @param  {[type]} r   [description]
+ * @return {[type]}     [description]
+ */
 //_recursion 数组过大时使用迭代版本
 Algorithms.merge_sort_recursion = function(A) {
 
@@ -214,13 +219,46 @@ Algorithms.pop_sort = function(A) {
 
 
 $(function() {
+    var randoms = [];
+    for (var i = 1; i < 1001; i++) {
+        randoms.push(i);
+    };
+    //从一个给定的数组arr中,随机返回num个不重复项
+    function getArrayItems(arr, num) {
+        //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
+        var temp_array = arr; 
+        //取出的数值项,保存在此数组
+        var return_array = [];
+        for (var i = 0; i < num; i++) {
+            //判断如果数组还有可以取出的元素,以防下标越界
+            if (temp_array.length > 0) {
+                //在数组中产生一个随机索引
+                var arrIndex = Math.floor(Math.random() * temp_array.length);
+                //将此随机索引的对应的数组元素值复制出来
+                return_array[i] = temp_array[arrIndex];
+                //然后删掉此索引的数组元素,这时候temp_array变为新的数组
+                temp_array.splice(arrIndex, 1);
+            } else {
+                //数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
+                break;
+            }
+        }
+        return return_array;
+    }
+    var arr = getArrayItems(randoms,randoms.length);
+    $('.input').val(arr.join());
+
     for (key in Algorithms) {
         var compent = $('.' + key + '>.go');
         compent.attr('key', key);
         compent.on('click', function() {
             var temp = $(this).attr('key');
             var arr = $('.' + temp + '>.input').val().split(',');
+            var timeConsuming = $('.' + temp + '>.timeConsuming');
+            var timeS = (new Date()).getTime();
             var text = Algorithms[temp](arr);
+            var timeE = (new Date()).getTime();
+            timeConsuming.text(" 耗时:" + (timeE - timeS) + " 毫秒");
             $('.' + temp + '>.result').text(text);
         });
     }
