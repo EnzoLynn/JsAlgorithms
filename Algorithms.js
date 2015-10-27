@@ -29,12 +29,66 @@ Algorithms.insert_sort = function(arr) {
  * @param  {[type]} r   [description]
  * @return {[type]}     [description]
  */
- 
+Algorithms.merge_sort_iteration = function(A) {
+    if (A.length == 1) {
+        return　 A;
+    }
+
+    var rel = [],
+        rer = [];
+    while (A.length > 0) {
+        var L = A.shift();
+        var R = A.shift();
+        if (typeof R == 'undefined') {
+            rel.push([L]);
+            break;
+        };
+        if (parseInt(L) < parseInt(R)) {
+            rel.push([L, R]);
+        } else {
+            rel.push([R, L]);
+        }
+    }
+    console.log(rel);
+    var count = rel.length;
+    var result = [],output=[];
+    while (count > 1) {
+        result = [];
+        while (rel.length > 0) {
+            rer = [];
+            var L = rel.shift();
+            var R = rel.shift();
+            if (typeof R == 'undefined') {   
+                result.push(L); 
+                console.log(result);
+                continue;
+            };
+            while (L.length > 0 && R.length > 0) {
+
+                if (parseInt(L[0]) < parseInt(R[0])) {
+                    rer.push(L.shift());
+                } else {
+                    rer.push(R.shift());
+                }
+            }
+            rer = rer.concat(L).concat(R);
+            result.push(rer);
+        }
+        count = result.length;
+        rel = result; 
+    }
+
+    return result;
+    
+
+}
+
+
 //_recursion 数组过大时使用迭代版本
 Algorithms.merge_sort_recursion = function(A) {
 
     function　 merge(left, right) {
-        var　 result = []; 
+        var　 result = [];
         while (left.length > 0 && right.length > 0) {
             if (parseInt(left[0]) < parseInt(right[0])) {
                 /*shift()方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。*/
@@ -43,8 +97,7 @@ Algorithms.merge_sort_recursion = function(A) {
                 result.push(right.shift());
             }
 
-        } 
-
+        }
         return　 result.concat(left).concat(right);
     }
 
@@ -60,6 +113,7 @@ Algorithms.merge_sort_recursion = function(A) {
     return　 mergeSort(A);
 
 };
+//将两组已排序的数组合并排序
 Algorithms.merge_sort_expir = function(A) {
     var p = 0,
         q = A.length / 2 - 1,
