@@ -18,21 +18,21 @@
 </head>
 <body>
 	<fieldset class="insert_sort">
-		<legend>insert_sort(O(N)-O[N^2])固定元素找位置</legend>
+		<legend>insert_sort(O(n^2)  O(1) 稳定)固定元素找位置</legend>
 		<input type="text" class="input" value="5,2,4,6,1,3">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
 		<div class="result"></div>
 	</fieldset>   
 	<fieldset class="pop_sort">
-		<legend>pop_sort(O[N^2])两两互换位置</legend>
+		<legend>pop_sort(O(n^2)  O(1) 稳定)两两互换位置</legend>
 		<input type="text" class="input" value="5,2,4,6,1,3">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
 		<div class="result"></div>
 	</fieldset>  
 	<fieldset class="sel_sort">
-		<legend>sel_sort(O[N^2])固定位置找元素</legend>
+		<legend>sel_sort(O(n^2)  O(1) 不稳定)固定位置找元素</legend>
 		<input type="text" class="input" value="5,2,4,6,1,3">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
@@ -40,14 +40,22 @@
 	</fieldset>  
 	 
 	<fieldset class="merge_sort_recursion">
-		<legend>merge_sort_recursion(O[NlogN])</legend>
+		<legend>merge_sort_recursion(O(nlog2_n)  O(nlog2_n) 稳定)</legend>
 		<input type="text" class="input" value="5,2,4,6,1,3">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
 		<div class="result"></div>
 	</fieldset>  
 	<fieldset class="merge_sort_iteration">
-		<legend>merge_sort_iteration(O[NlogN])</legend>
+		<legend>merge_sort_iteration(O(nlog2_n)  O(nlog2_n) 稳定)</legend>
+		<input type="text" class="input" value="5,2,4,6,1,3">
+		<input type="button" class="go" value="go"> 
+		<span class="timeConsuming"></span> 
+		<div class="result"></div>
+	</fieldset>  
+
+	<fieldset class="quick_sort">
+		<legend>quick_sort(O(n^2)  O(1) 不稳定)</legend>
 		<input type="text" class="input" value="5,2,4,6,1,3">
 		<input type="button" class="go" value="go"> 
 		<span class="timeConsuming"></span> 
@@ -55,4 +63,4 @@
 	</fieldset>  
 	
 </body>
-</html>
+</html

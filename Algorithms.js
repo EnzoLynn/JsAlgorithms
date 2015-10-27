@@ -50,6 +50,9 @@ Algorithms.merge_sort_iteration = function(A) {
         }
     }
     var count = rel.length;
+    if (count == 1) {
+        return　 rel;
+    }
     var result = [],
         output = [];
     while (count > 1) {
@@ -218,15 +221,55 @@ Algorithms.pop_sort = function(A) {
 };
 
 
+Algorithms.quick_sort = function(A) {
+    function sortUnit(array,low,high) {
+        var key = parseInt(array[low]);
+        while (low < high) {
+            /*从后向前搜索比key小的值*/
+            while (array[high] >= key && high > low)
+                --high;
+            /*比key小的放左边*/
+            array[low] = array[high];
+            /*从前向后搜索比key大的值，比key大的放右边*/
+            while (array[low] <= key && high > low)
+                ++low;
+            /*比key大的放右边*/
+            array[high] = array[low];
+        }
+        /*左边都比key小，右边都比key大。//将key放在游标当前位置。//此时low等于high */
+        array[low] = key;
+        
+        return high;
+    }
+    /**快速排序 
+     *@paramarry 
+     *@return */
+    function sort(array,low,high) {
+        if (low >= high)
+            return;
+        /*完成一次单元排序*/
+        var index = sortUnit(array, low, high);
+        /*对左边单元进行排序*/
+        sort(array, low, index - 1);
+        /*对右边单元进行排序*/
+        sort(array, index + 1, high);
+    }
+
+     sort(A,0,A.length-1);
+     return A;
+};
+
+
+
 $(function() {
     var randoms = [];
     for (var i = 1; i < 2001; i++) {
-        randoms.push(Math.floor(Math.random()*10*i));
+        randoms.push(Math.floor(Math.random() * 10 * i));
     };
     //从一个给定的数组arr中,随机返回num个不重复项
     function getArrayItems(arr, num) {
         //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
-        var temp_array = arr; 
+        var temp_array = arr;
         //取出的数值项,保存在此数组
         var return_array = [];
         for (var i = 0; i < num; i++) {
@@ -245,7 +288,7 @@ $(function() {
         }
         return return_array;
     }
-    var arr = getArrayItems(randoms,randoms.length);
+    var arr = getArrayItems(randoms, randoms.length);
     $('.input').val(arr.join());
 
     for (key in Algorithms) {
