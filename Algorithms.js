@@ -234,11 +234,10 @@ Algorithms.quick_sort = function(A) {
             while (array[low] <= key && high > low)
                 ++low;
             /*比key大的放右边*/
-            array[high] = array[low];
+            array[high] = array[low];  
         }
         /*左边都比key小，右边都比key大。//将key放在游标当前位置。//此时low等于high */
-        array[low] = key;
-        
+        array[low] = key; 
         return high;
     }
     /**快速排序 
@@ -248,7 +247,7 @@ Algorithms.quick_sort = function(A) {
         if (low >= high)
             return;
         /*完成一次单元排序*/
-        var index = sortUnit(array, low, high);
+        var index = sortUnit(array, low, high); 
         /*对左边单元进行排序*/
         sort(array, low, index - 1);
         /*对右边单元进行排序*/
